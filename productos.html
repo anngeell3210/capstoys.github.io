@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Productos - CAPSTOYS</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      padding: 2rem;
+    }
+    .producto {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+      border: 1px solid #444;
+    }
+    .producto img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .producto h3 {
+      margin: 10px 0;
+    }
+    .producto button {
+      background-color: #fff;
+      color: #000;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .producto button:hover {
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="img/logo.png" alt="Logo de CAPSTOYS" class="logo">
+    <h1>Catálogo de Gorras</h1>
+  </header>
+
+  <main class="grid" id="lista-productos">
+    <!-- Productos generados por JavaScript -->
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> CAPSTOYS</p>
+  </footer>
+
+  <script>
+    const productos = [
+      { id: 1, nombre: "Gorra Roja", imagen: "img/gorra1.jpg" },
+      { id: 2, nombre: "Gorra Azul", imagen: "img/gorra2.jpg" },
+      { id: 3, nombre: "Gorra Negra", imagen: "img/gorra3.jpg" },
+      { id: 4, nombre: "Gorra Blanca", imagen: "img/gorra4.jpg" },
+      { id: 5, nombre: "Gorra Gris", imagen: "img/gorra5.jpg" },
+      { id: 6, nombre: "Gorra Verde", imagen: "img/gorra6.jpg" },
+      { id: 7, nombre: "Gorra Amarilla", imagen: "img/gorra7.jpg" },
+      { id: 8, nombre: "Gorra Rosa", imagen: "img/gorra8.jpg" },
+      { id: 9, nombre: "Gorra Marrón", imagen: "img/gorra9.jpg" },
+      { id: 10, nombre: "Gorra Morada", imagen: "img/gorra10.jpg" },
+      { id: 11, nombre: "Gorra Camo", imagen: "img/gorra11.jpg" },
+      { id: 12, nombre: "Gorra Urbana", imagen: "img/gorra12.jpg" },
+      { id: 13, nombre: "Gorra Deportiva", imagen: "img/gorra13.jpg" },
+      { id: 14, nombre: "Gorra Street", imagen: "img/gorra14.jpg" },
+      { id: 15, nombre: "Gorra Retro", imagen: "img/gorra15.jpg" }
+    ];
+
+    const lista = document.getElementById('lista-productos');
+
+    productos.forEach(producto => {
+      const div = document.createElement('div');
+      div.classList.add('producto');
+      div.innerHTML = `
+        <img src="${producto.imagen}" alt="${producto.nombre}">
+        <h3>${producto.nombre}</h3>
+        <button onclick="agregarAlCarrito(${producto.id})">Agregar al carrito</button>
+      `;
+      lista.appendChild(div);
+    });
+
+    function agregarAlCarrito(id) {
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      carrito.push(id);
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      alert("Producto agregado al carrito");
+    }
+
+    // Año actual en footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

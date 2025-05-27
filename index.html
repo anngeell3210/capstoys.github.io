@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title> CAPSTOYS</title>
+  <style>
+   
+  body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+  margin: 0;
+  background: url('fondo.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+
+header, nav, footer {
+  background-color: rgba(0, 0, 0, 0.6); 
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+
+.modal {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+  background: #222; 
+  color: white; 
+}
+
+    header {
+ text-align: center;
+    padding: 1rem;
+    background: rgba(0,0,0,0.6);
+    }
+    .logo {
+      max-width: 120px;
+    display: block;
+    margin: 0 auto 0.5rem;
+    }
+    nav {
+    text-align: center;
+    margin: 1rem 0;
+    }
+    nav .btn {
+    display: inline-block;
+    margin: 0 0.5rem;
+    padding: 0.6rem 1.2rem;
+    background: rgba(255,255,255,0.1);
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 4px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s, transform 0.2s;
+    }
+    nav .btn:hover {
+      background: #888;
+    }
+    main {
+      padding: 20px;
+      text-align: center;
+    }
+
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0; right: 0; bottom: 0;
+      background-color: rgba(0,0,0,0.7);
+      overflow: auto;
+      padding: 40px 20px;
+      box-sizing: border-box;
+    }
+
+
+    .modal-content {
+      background: url('fondo.jpg') ;
+      max-width: 900px;
+      margin: auto;
+      border-radius: 8px;
+      padding: 20px;
+      position: relative;
+    }
+
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      user-select: none;
+    }
+
+ 
+    .categorias-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      justify-items: center;
+    }
+    .categoria-item {
+      cursor: pointer;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+    .categoria-item:hover {
+      transform: scale(1.05);
+    }
+    .categoria-item img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 2px solid transparent;
+      transition: border-color 0.3s;
+    }
+    .categoria-item:hover img {
+      border-color: #007BFF;
+    }
+    .categoria-text {
+      margin-top: 8px;
+      font-weight: bold;
+      font-size: 1.1em;
+      color: #333;
+    }
+
+
+    .productos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(130px,1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .producto-item {
+      cursor: pointer;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      background: #fafafa;
+      transition: box-shadow 0.3s;
+      text-align: center;
+    }
+    .producto-item:hover {
+      box-shadow: 0 0 8px rgba(0,123,255,0.7);
+    }
+    .producto-item img {
+      max-width: 100%;
+      height: 100px;
+      object-fit: contain;
+      margin-bottom: 8px;
+    }
+    .producto-nombre {
+      font-weight: bold;
+      font-size: 0.9em;
+      color: #222;
+    }
+
+
+    .detalle-gorra {
+      text-align: center;
+    }
+    .detalle-gorra img {
+      max-width: 250px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+    }
+    .detalle-gorra p {
+      font-size: 1em;
+      margin-bottom: 20px;
+      color: #444;
+    }
+    .btn-agregar {
+      background-color: #007BFF;
+      border: none;
+      color: white;
+      padding: 12px 25px;
+      font-size: 1em;
+      border-radius: 6px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .btn-agregar:hover {
+      background-color: #0056b3;
+    }
+    .media-row video {
+      width:350px;
+      max-width: 100%;
+      border-radius: 35px;
+    }
+    .modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.7);
+}
+
+.modal-contenido {
+  background-color: white;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 15px;
+  width: 300px;
+  text-align: center;
+  position: relative;
+}
+
+.modal-contenido input {
+  width: 90%;
+  padding: 8px;
+  margin: 8px 0;
+}
+
+.modal-contenido button {
+  background-color: #393a39;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.cerrar {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 24px;
+  cursor: pointer;
+}
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="caaaa.jpg" alt="CAPSTOYS" align="center" class="logo" >
+  <h1><marquee>CAPSTOYS</marquee></h1>
+</header>
+
+<nav>
+  <a href="#" class="btn" id="btnCatalogo">Catálogo</a>
+  <a href="contacto.html" target="_blank" class="btn">Contacto</a>
+  <a href="carrito.html" target="_blank" class="btn">🛒 Ver carrito</a>
+  <a href="#videoPromo" class="btn">Ver Video</a>
+<a href="#" class="btn" id="abrirRegistro">Registro</a>
+</nav>
+
+<main>
+  <h2>Bienvenido a la tienda de gorras CAPSTOYS</h2>
+  <p>Descubre nuestros diseños exclusivos y personalizables.</p>
+</main>
+
+
+<div id="modalCatalogo" class="modal">
+  <div class="modal-content">
+    <span class="close" id="cerrarCatalogo">&times;</span>
+    <h2>Catálogos disponibles</h2>
+    <div class="categorias-grid" id="categoriasGrid">
+
+    </div>
+  </div>
+</div>
+
+
+<div id="modalProductos" class="modal">
+  <div class="modal-content">
+    <span class="close" id="cerrarProductos">&times;</span>
+    <h2 id="tituloCategoria">Gorras</h2>
+    <div class="productos-grid" id="productosGrid"></div>
+  </div>
+</div>
+<div class="media-row" id="videoPromo">
+  <video controls>
+    <source src="gorras.mp4" type="video/mp4">
+  </video>
+</div>
+
+
+<div id="modalDetalle" class="modal">
+  <div class="modal-content">
+    <span class="close" id="cerrarDetalle">&times;</span>
+    <div class="detalle-gorra" id="detalleGorra">
+
+    </div>
+  </div>
+</div>
+
+<div id="modalRegistro" class="modal">
+  <div class="modal-contenido">
+    <span class="cerrar" id="cerrarRegistro">&times;</span>
+    <h2>Formulario de Registro</h2>
+    <form id="formularioRegistro">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" required><br>
+
+      <label for="correo">Correo:</label>
+      <input type="email" id="correo" required><br>
+
+      <label for="password">Contraseña:</label>
+      <input type="password" id="password" required><br>
+
+      <button type="submit">Registrar</button>
+    </form>
+  </div>
+</div>
+
+
+<script>
+
+  const categorias = [
+    { id: "barbas", nombre: "Barba Hats", imagen: "barba.jpg" },
+    { id: "jc", nombre: "JC Hats", imagen: "jc.jpg" },
+    { id: "newera", nombre: "New Era", imagen: "new era.jpg" },
+    { id: "dandy", nombre: "Dandy Hats", imagen: "dandy.jpg" }
+  ];
+
+
+  const productosData = {
+    barbas: [
+    { nombre: "Gorra Barba 1", imagen: "barba/num1.webp", descripcion: " BARBAS HATS, edicion especal en $5000 pesos" },
+      { nombre: "Gorra Barba 2", imagen: "barba/num2.webp", descripcion: "BARBAS HATS, edicion especal en $2000 pesos" },
+      { nombre: "Gorra Barba 3", imagen: "barba/num3.webp", descripcion: "BARBAS HATS, edicion especal en $3000 pesos" },
+      { nombre: "Gorra Barba 4", imagen: "barba/num4.webp", descripcion: "BARBAS HATS, edicion especal en $2000 pesos" },
+      { nombre: "Gorra Barba 5", imagen: "barba/num6.webp", descripcion:  "BARBAS HATS, edicion especal en $5000 pesos"},
+      { nombre: "Gorra Barba 6", imagen: "barba/num7.webp", descripcion:  "BARBAS HATS, edicion especal en $5000 pesos" },
+      { nombre: "Gorra Barba 7", imagen: "barba/num8.webp", descripcion:  "BARBAS HATS, edicion especal en $5000 pesos" },
+      { nombre: "Gorra Barba 8", imagen: "barba/num9.webp", descripcion:  "BARBAS HATS, edicion especal en $15000 pesos" },
+      { nombre: "Gorra Barba 9", imagen: "barba/num10.webp", descripcion:  "BARBAS HATS, edicion especal en $5000 pesos"},
+      { nombre: "Gorra Barba 10", imagen: "barba/num11.webp", descripcion:   "BARBAS HATS, edicion especal en $5000 pesos"},
+      { nombre: "Gorra Barba 11", imagen: "barba/num12.webp", descripcion:  "BARBAS HATS, edicion especal en $7000 pesos"},
+      { nombre: "Gorra Barba 12", imagen: "barba/num13.webp", descripcion:  "BARBAS HATS, edicion especal en $5000 pesos" },
+      { nombre: "Gorra Barba 13", imagen: "barba/num14.webp", descripcion:  "BARBAS HATS, edicion especal en $5000 pesos"},
+      { nombre: "Gorra Barba 14", imagen: "barba/num15.webp", descripcion: "BARBAS HATS, edicion especal en $1000 pesos" },
+      { nombre: "Gorra Barba 15", imagen: "barba/num5.webp", descripcion:  "BARBAS HATS, edicion especal en $1000 pesos" }
+    ],
+    jc: [
+    { nombre: "Gorra JC 1", imagen: " jc/num1.webp ", descripcion: " JC edicion especal en $1000 pesos" },
+      { nombre: "Gorra JC 2", imagen: " jc/num2.jfif ", descripcion: " JC edicion especal en $1000 pesos" },
+      { nombre: "Gorra JC 3", imagen: " jc/num3.jfif ", descripcion: " JC edicion especal en $1000 pesos" },
+      { nombre: "Gorra JC 4", imagen: " jc/num4.jfif ", descripcion: " JC edicion especal en $1000 pesos" },
+      { nombre: "Gorra JC 5", imagen: " jc/num5.jfif ", descripcion: " JC edicion especal en $1000 pesos" },
+      { nombre: "Gorra JC 6", imagen: " jc/num6.jpeg ", descripcion: " JC edicion especal en $1000 pesos"},
+      { nombre: "Gorra JC 7", imagen: " jc/num7.webp ", descripcion:  " JC edicion especal en $1000 pesos"},
+      { nombre: "Gorra JC 8", imagen: " jc/num8.webp ", descripcion:  " JC edicion especal en $1000 pesos"},
+      { nombre: "Gorra JC 9", imagen: " jc/num9.jpg ", descripcion: " JC edicion especal en $1000 pesos"},
+      { nombre: "Gorra JC 10", imagen: " jc/num10.jpg ", descripcion:  " JC edicion especal en $1000 pesos"},
+      { nombre: "Gorra JC 11", imagen: " jc/num11.jpg ", descripcion:  " JC edicion especal en $1000 pesos"},
+      { nombre: "Gorra JC 12", imagen: " jc/num12.jpg", descripcion:  " JC edicion especal en $1000 pesos"},
+      { nombre: "Gorra JC 13", imagen: " jc/num13.jpg ", descripcion:  " JC edicion especal en $1000 pesos"},
+      { nombre: "Gorra JC 14", imagen: " jc/num14.jpg ", descripcion:  " JC edicion especal en $1000 pesos"},
+      { nombre: "Gorra JC 15", imagen: " jc/num15.jpg ", descripcion: " JC edicion especal en $1000 pesos" }
+    ],
+    newera: [
+    { nombre: "Gorra New Era 1", imagen: " new era/num1.jfif", descripcion: "New Era edicion especal en $1000 pesos" },
+      { nombre: "Gorra New Era 2", imagen: " new era/num2.jpg", descripcion: "New Era edicion especal en $1000 pesos" },
+      { nombre: "Gorra New Era 3", imagen: " new era/num3.webp", descripcion: "New Era edicion especal en $1000 pesos" },
+      { nombre: "Gorra New Era 4", imagen: " new era/num4.jfif", descripcion: "New Era edicion especal en $1000 pesos" },
+      { nombre: "Gorra New Era 5", imagen: " new era/num5.webp", descripcion:  "New Era edicion especal en $1000 pesos" },
+      { nombre: "Gorra New Era 6", imagen: " new era/num6.jfif", descripcion: "New Era edicion especal en $1000 pesos"  },
+      { nombre: "Gorra New Era 7", imagen: " new era/num7.webp", descripcion:  "New Era edicion especal en $1000 pesos" },
+      { nombre: "Gorra New Era 8", imagen: " new era/num8.jfif", descripcion: "New Era edicion especal en $1000 pesos" },
+      { nombre: "Gorra New Era 9", imagen: " new era/num9.webp", descripcion:  "New Era edicion especal en $1000 pesos" },
+      { nombre: "Gorra New Era 10", imagen: " new era/num10.jfif", descripcion:  "New Era edicion especal en $1000 pesos" },
+      { nombre: "Gorra New Era 11", imagen: " new era/num11.webp", descripcion:"New Era edicion especal en $1000 pesos"   },
+      { nombre: "Gorra New Era 12", imagen: " new era/num12.jfif", descripcion:  "New Era edicion especal en $1000 pesos" },
+      { nombre: "Gorra New Era 13", imagen: " new era/num13.webp", descripcion:  "New Era edicion especal en $1000 pesos" },
+      { nombre: "Gorra New Era 14", imagen: " new era/num14.jfif", descripcion: "New Era edicion especal en $1000 pesos"  },
+      { nombre: "Gorra New Era 15", imagen: " new era/num15.webp", descripcion: "New Era edicion especal en $1000 pesos"  }
+    ],
+    dandy: [
+    { nombre: "Gorra Dandy 1", imagen: " dandy/num1.jpeg", descripcion:  "Dandy Hats edicion especal en $1000 pesos"},
+      { nombre: "Gorra Dandy 2", imagen: " dandy/num2.webp", descripcion: "Dandy Hats edicion especal en $1000 pesos" },
+      { nombre: "Gorra Dandy 3", imagen: " dandy/num3.webp", descripcion:"Dandy Hats edicion especal en $1000 pesos" },
+      { nombre: "Gorra Dandy 4", imagen: " dandy/num4.jpeg", descripcion: "Dandy Hats edicion especal en $1000 pesos"},
+      { nombre: "Gorra Dandy 5", imagen: " dandy/num5.webp", descripcion: "Dandy Hats edicion especal en $1000 pesos" },
+      { nombre: "Gorra Dandy 6", imagen: " dandy/num6.webp", descripcion: "Dandy Hats edicion especal en $1000 pesos" },
+      { nombre: "Gorra Dandy 7", imagen: " dandy/num7.webp", descripcion:  "Dandy Hats edicion especal en $1000 pesos"},
+      { nombre: "Gorra Dandy 8", imagen: " dandy/num8.jpg", descripcion:  "Dandy Hats edicion especal en $1000 pesos"},
+      { nombre: "Gorra Dandy 9", imagen: " dandy/num9.webp", descripcion: "Dandy Hats edicion especal en $1000 pesos" },
+      { nombre: "Gorra Dandy 10", imagen: " dandy/num10.webp", descripcion:  "Dandy Hats edicion especal en $1000 pesos"},
+      { nombre: "Gorra Dandy 11", imagen: " dandy/num1.jpeg", descripcion:"Dandy Hats edicion especal en $1000 pesos" },
+      { nombre: "Gorra Dandy 12", imagen: " dandy/num2.webp", descripcion:"Dandy Hats edicion especal en $1000 pesos" },
+      { nombre: "Gorra Dandy 13", imagen: " dandy/num3.webp", descripcion: "Dandy Hats edicion especal en $1000 pesos" },
+      { nombre: "Gorra Dandy 14", imagen: " dandy/num4.jpeg", descripcion:"Dandy Hats edicion especal en $1000 pesos" },
+      { nombre: "Gorra Dandy 15", imagen: " dandy/num5.webp", descripcion:"Dandy Hats edicion especal en $1000 pesos" }
+    ]
+  };
+
+
+  const modalCatalogo = document.getElementById("modalCatalogo");
+  const modalProductos = document.getElementById("modalProductos");
+  const modalDetalle = document.getElementById("modalDetalle");
+  const categoriasGrid = document.getElementById("categoriasGrid");
+  const productosGrid = document.getElementById("productosGrid");
+  const detalleGorra = document.getElementById("detalleGorra");
+  const tituloCategoria = document.getElementById("tituloCategoria");
+
+
+  document.getElementById("cerrarCatalogo").onclick = () => cerrarModal(modalCatalogo);
+  document.getElementById("cerrarProductos").onclick = () => cerrarModal(modalProductos);
+  document.getElementById("cerrarDetalle").onclick = () => cerrarModal(modalDetalle);
+
+ 
+  document.getElementById("btnCatalogo").onclick = () => {
+    abrirModal(modalCatalogo);
+    mostrarCategorias();
+  };
+
+  
+  function abrirModal(modal) {
+    modal.style.display = "block";
+  }
+  function cerrarModal(modal) {
+    modal.style.display = "none";
+ 
+    if(modal === modalProductos) productosGrid.innerHTML = "";
+    if(modal === modalDetalle) detalleGorra.innerHTML = "";
+  }
+
+
+  function mostrarCategorias() {
+    categoriasGrid.innerHTML = "";
+    categorias.forEach(cat => {
+      const div = document.createElement("div");
+      div.classList.add("categoria-item");
+      div.innerHTML = `
+        <img src="${cat.imagen}" alt="${cat.nombre}">
+        <div class="categoria-text">${cat.nombre}</div>
+      `;
+      div.onclick = () => {
+        abrirModal(modalProductos);
+        tituloCategoria.textContent = cat.nombre;
+        mostrarProductos(cat.id);
+        cerrarModal(modalCatalogo);
+      };
+      categoriasGrid.appendChild(div);
+    });
+  }
+
+
+  function mostrarProductos(categoriaId) {
+    productosGrid.innerHTML = "";
+    const productos = productosData[categoriaId];
+    productos.forEach((prod, index) => {
+      const div = document.createElement("div");
+      div.classList.add("producto-item");
+      div.innerHTML = `
+        <img src="${prod.imagen}" alt="${prod.nombre}" />
+        <div class="producto-nombre">${prod.nombre}</div>
+      `;
+      div.onclick = () => {
+        abrirModal(modalDetalle);
+        mostrarDetalleProducto(prod, categoriaId);
+        cerrarModal(modalProductos);
+      };
+      productosGrid.appendChild(div);
+    });
+  }
+
+
+  function mostrarDetalleProducto(producto, categoria) {
+    detalleGorra.innerHTML = `
+      <img src="${producto.imagen}" alt="${producto.nombre}" />
+      <h3>${producto.nombre}</h3>
+      <p>${producto.descripcion}</p>
+      <button class="btn-agregar">Agregar al carrito</button>
+    `;
+
+    const btnAgregar = detalleGorra.querySelector(".btn-agregar");
+    btnAgregar.onclick = () => {
+      agregarAlCarrito(producto);
+    };
+  }
+
+ 
+  function agregarAlCarrito(producto) {
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    carrito.push(producto);
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    alert(`${producto.nombre} agregado al carrito`);
+    cerrarModal(modalDetalle);
+  }
+
+
+  window.onclick = function(event) {
+    if(event.target === modalCatalogo) cerrarModal(modalCatalogo);
+    if(event.target === modalProductos) cerrarModal(modalProductos);
+    if(event.target === modalDetalle) cerrarModal(modalDetalle);
+  };
+
+  // Mostrar el modal
+  document.getElementById("abrirRegistro").addEventListener("click", function(event) {
+    event.preventDefault();
+    document.getElementById("modalRegistro").style.display = "block";
+  });
+
+  // Cerrar el modal
+  document.getElementById("cerrarRegistro").addEventListener("click", function() {
+    document.getElementById("modalRegistro").style.display = "none";
+  });
+
+  // Registrar sin enviar datos
+  document.getElementById("formularioRegistro").addEventListener("submit", function(event) {
+    event.preventDefault();
+    alert("¡Has sido registrado en CAPSTOYS!");
+    document.getElementById("modalRegistro").style.display = "none";
+    this.reset(); // Limpiar el formulario
+  });
+
+  // Cerrar si se hace clic fuera del modal
+  window.addEventListener("click", function(event) {
+    const modal = document.getElementById("modalRegistro");
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+
+
+
+</script>
+
+</body>
+</html> 

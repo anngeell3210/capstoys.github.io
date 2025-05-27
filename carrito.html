@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Carrito CAPSTOYS</title>
+  <style>
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+  margin: 0;
+  background: url('fondo.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+
+header, nav, footer {
+  background-color: rgba(0, 0, 0, 0.6); 
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.modal {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+  background: #222; 
+  color: white; 
+  padding: 20px;
+  border-radius: 10px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.boton-regresar {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.boton-regresar:hover {
+  background: #0056b3;
+}
+
+.producto {
+  border-bottom: 1px solid #ccc;
+  padding: 15px 0;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.producto img {
+  width: 100px;
+  border-radius: 8px;
+}
+
+.info {
+  flex-grow: 1;
+}
+
+.info h3 {
+  margin: 0 0 5px 0;
+}
+
+.btn-eliminar {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.vaciar-btn {
+  margin-top: 20px;
+  background: #555;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.empty-msg {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 40px;
+  color: #ccc;
+}
+.comprar-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.comprar-btn:hover {
+  background: #218838;
+}
+
+</style>
+
+
+</head>
+<body>
+
+<h1>Tu Carrito de Compras</h1>
+
+<a href="CAPSTOY.html" class="boton-regresar">← Volver a la página principal</a>
+<div style="margin-top: 20px;">
+<button class="comprar-btn" id="boton-comprar" onclick="comprar()">
+  Comprar
+</button>
+</div>
+
+
+<div id="carrito-contenedor"></div>
+
+<button class="vaciar-btn" onclick="vaciarCarrito()">Vaciar carrito</button>
+
+<script>
+  function mostrarCarrito() {
+    const contenedor = document.getElementById('carrito-contenedor');
+    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+if (carrito.length === 0) {
+  contenedor.innerHTML = '<p class="empty-msg">Tu carrito está vacío.</p>';
+  const botonComprar = document.getElementById('boton-comprar');
+  if (botonComprar) {
+    botonComprar.style.display = 'none';
+  }
+  return;
+}
+
+    let html = '';
+    carrito.forEach((producto, index) => {
+      html += `
+        <div class="producto">
+          <img src="${producto.imagen}" alt="${producto.nombre}" />
+          <div class="info">
+            <h3>${producto.nombre}</h3>
+            <p>${producto.descripcion}</p>
+          </div>
+          <button class="btn-eliminar" onclick="eliminarProducto(${index})">Eliminar</button>
+        </div>
+      `;
+    });
+
+  contenedor.innerHTML = html;
+
+const botonComprar = document.getElementById('boton-comprar');
+if (botonComprar) {
+  botonComprar.style.display = 'block';
+}
+}
+
+  function eliminarProducto(index) {
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    carrito.splice(index, 1);
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    mostrarCarrito();
+  }
+
+  function vaciarCarrito() {
+    if (confirm("¿Seguro que quieres vaciar el carrito?")) {
+      localStorage.removeItem('carrito');
+      mostrarCarrito();
+    }
+  }
+  function comprar() {
+  alert("¡Compra exitosa! Gracias por comprar en CAPSTOYS.");
+  localStorage.removeItem('carrito');
+  mostrarCarrito();
+}
+
+
+
+  
+  mostrarCarrito();
+</script>
+
+</body>
+</html>
