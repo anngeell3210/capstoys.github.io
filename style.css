@@ -128,3 +128,22 @@
     font-size: 1.5rem;
     margin-top: -1rem;
   }
+h1 {
+  text-align: center;
+}
+
+.boton-regresar {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.boton-regresar:hover {
+  background: #0056b3;
+}
